@@ -1,15 +1,20 @@
-cache: homo_sapiens_vep_87_GRCh38.tar.gz homo_sapiens_merged_vep_87_GRCh38.tar.gz homo_sapiens_refseq_vep_87_GRCh38.tar.gz
+ensembl = resources/homo_sapiens_vep_87_GRCh38.tar.gz
+merged = resources/homo_sapiens_merged_vep_87_GRCh38.tar.gz
+refseq = resources/homo_sapiens_refseq_vep_87_GRCh38.tar.gz
+resources = resources/
+
+cache: $(ensembl) $(merged) $(refseq)
 
 .DUMMY: cache
 
-homo_sapiens_vep_87_GRCh38.tar.gz: resources/
-	cd resources && lftp -c 'open ftp://ftp.ensembl.org/pub/release-87/variation/VEP/ && get $@'
+$(ensembl): | resources/
+	lftp -c 'open ftp://ftp.ensembl.org/pub/release-87/variation/VEP/ && get -O $(resources) homo_sapiens_vep_87_GRCh38.tar.gz'
 
-homo_sapiens_merged_vep_87_GRCh38.tar.gz: resources/
-	cd resources && lftp -c 'open ftp://ftp.ensembl.org/pub/release-87/variation/VEP/ && get $@'
+$(refseq) : | resources/
+	lftp -c 'open ftp://ftp.ensembl.org/pub/release-87/variation/VEP/ && get -O $(resources) homo_sapiens_refseq_vep_87_GRCh38.tar.gz'
 
-homo_sapiens_refseq_vep_87_GRCh38.tar.gz: resources/
-	cd resources && lftp -c 'open ftp://ftp.ensembl.org/pub/release-87/variation/VEP/ && get $@'
+$(merged) : | resources/
+	lftp -c 'open ftp://ftp.ensembl.org/pub/release-87/variation/VEP/ && get -O $(resources) homo_sapiens_merged_vep_87_GRCh38.tar.gz'
 
-resources/:
-	mkdir -p resources
+$(resources):
+	mkdir -p $@
