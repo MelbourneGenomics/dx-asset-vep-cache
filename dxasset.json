@@ -1,0 +1,9 @@
+{
+  "name": "hg38 Vep Cache",
+  "title": "hg38 Vep Cache",
+  "description": "hg38 Vep Cache",
+  "version": "0.0.1",
+  "distribution": "Ubuntu",
+  "instanceType": "mem2_ssd1_x2",
+  "release": "14.04"
+}
