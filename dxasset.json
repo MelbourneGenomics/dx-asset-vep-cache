@@ -5,5 +5,8 @@
   "version": "0.0.1",
   "distribution": "Ubuntu",
   "instanceType": "mem1_ssd2_x2",
-  "release": "14.04"
+  "release": "14.04",
+  "execDepends": [
+    {"name": "lftp", "package_manager": "apt"}
+  ]
 }
