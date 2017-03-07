@@ -4,6 +4,6 @@
   "description": "hg38 Vep Cache",
   "version": "0.0.1",
   "distribution": "Ubuntu",
-  "instanceType": "mem2_ssd1_x2",
+  "instanceType": "mem1_ssd2_x2",
   "release": "14.04"
 }
